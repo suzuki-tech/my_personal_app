@@ -7,7 +7,7 @@
     .task
       %li.task__left-name
         = form_for @task do |f|
-          = f.text_field :content, class: "input-box", placeholder: "type a task"
+          = f.text_field :content, class: "input-box", placeholder: "type a task", method: :patch
           = f.submit "update", class: "send-btn"
       .task__right-status
         start
