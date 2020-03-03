@@ -7,27 +7,26 @@
     .contents__title__left-name
       Task List
     .contents__title__right-form
-      -# フォーム追加
-    .send-btn
-      create
+      = form_for @task do |f|
+        = f.text_field :content, class: "input-box", placeholder: "type a task"
+        = f.submit "Create", class: "send-btn"
   .tasks
-    .tasks__title
-      .tasks__title__left-name
-        Task
-      .tasks__title__right-status
-        Status
-    .task
-      .task__left-name
-        タスク１
-      .task__right-status
-        start
-    .task
-      .task__left-name
-        タスク2
-      .task__right-status
-        doing
-    .task
-      .task__left-name
-        タスク3
-      .task__right-status
-        done
+    -# .tasks__title
+    -#   .tasks__title__left-name
+    -#     Task
+    -#   .tasks__title__right-status
+    -#     Status
+
+    - @tasks.each do |task|
+      .task
+        %li.task__left-name
+          = task.content
+        .task__right-status
+          start
+        .task__right-icon
+          .task__right-icon__edit-task
+            = link_to "#" do
+              = icon('fas', 'pen-nib')
+          .task__right-icon__delete-task
+            = link_to "#" do
+              = icon('fas', 'trash')
