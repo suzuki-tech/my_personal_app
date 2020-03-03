@@ -28,5 +28,5 @@
             = link_to "#" do
               = icon('fas', 'pen-nib')
           .task__right-icon__delete-task
-            = link_to "#" do
+            = link_to task_path(task.id), method: :delete do
               = icon('fas', 'trash')
