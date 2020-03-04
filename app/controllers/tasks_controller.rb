@@ -1,8 +1,7 @@
 class TasksController < ApplicationController
   def index
     @task = Task.new
-    @tasks = Task.order('created_at ASC')
-    @status = ["start", "doing", "done"]
+    @tasks = Task.order('id DESC')
   end
 
   def new
@@ -27,6 +26,17 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
+    redirect_to root_path
+  end
+  
+  def change_status
+    @task = Task.find(params[:id])
+    if @task.status == "start"
+      @task.update_attribute(:status, "doing")
+    elsif @task.status == "doing"
+      @task.update_attribute(:status, "done")
+    end
+    redirect_to root_path
   end
 
     private
