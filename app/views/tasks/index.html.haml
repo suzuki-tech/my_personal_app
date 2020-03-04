@@ -11,12 +11,6 @@
         = f.text_field :content, class: "input-box", placeholder: "type a task"
         = f.submit "Create", class: "send-btn"
   .tasks
-    -# .tasks__title
-    -#   .tasks__title__left-name
-    -#     Task
-    -#   .tasks__title__right-status
-    -#     Status
-
     - @tasks.each do |task|
       .task
         %li.task__left-name
