@@ -21,8 +21,18 @@
       .task
         %li.task__left-name
           = task.content
-        .task__right-status
-          start
+        - if task.status == "start"
+          .task__right-status.status-start
+            = link_to done_task_path(task.id), method: :post do
+              = task.status
+        - elsif task.status == "doing"
+          .task__right-status.status-doing
+            = link_to done_task_path(task.id), method: :post do
+              = task.status
+        - else
+          .task__right-status.status-done
+            = link_to done_task_path(task.id), method: :post do
+              = task.status
         .task__right-icon
           .task__right-icon__edit-task
             = link_to edit_task_path(task.id) do
